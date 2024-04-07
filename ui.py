@@ -1,8 +1,9 @@
 import tkinter as tk
 
-def handle_input(event=None):  # Modified to accept an event argument
-    input_text = entry.get()
-    chat_history.insert(tk.END, "You: " + input_text + "\n")  # Add user input to chat history
+def handle_input(event=None):
+    chat_history.configure(state=tk.NORMAL)  # Enable editing to add text
+    chat_history.insert(tk.END, "You: " + entry.get() + "\n")  # Add user input to chat history
+    chat_history.configure(state=tk.DISABLED)  # Disable editing after adding text
     entry.delete(0, tk.END)  # Clear the input field
 
 # Create a Tkinter root window
@@ -11,7 +12,7 @@ root.geometry("400x600")
 root.configure(bg="light gray") 
 
 # Create a Text widget to display chat history
-chat_history = tk.Text(root, height=2, width=2)
+chat_history = tk.Text(root, height=30, width=40, state=tk.DISABLED)
 chat_history.pack(side=tk.TOP, pady=10)
 
 entry = tk.Entry(root, width=50)
